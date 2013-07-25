@@ -11,6 +11,8 @@ MATLAB code to perform Variational Bayesian linear regression. Two variants are 
 
     The model is the same as for the ARD variant, only that all the elements of the diagonal covariance matrix are modeled in combination by the same inverse-Gamma hyper-prior.
 
+The code is licensed under the New BSD License.
+
 Documentation
 -------------
 

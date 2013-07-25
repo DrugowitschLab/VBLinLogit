@@ -30,6 +30,10 @@ function [w, V, invV, logdetV, an, bn, E_a, L] = ...
 % Also, the mean vector E_a = E(alpha) is returned, together with the inverse
 % of V, and its log determinant. L is the variational bound of the model, and
 % is a lower bound on the log-model evidence ln p(y | X).
+%
+% Copyright (c) 2013, Jan Drugowitsch
+% All rights reserved.
+% See the file LICENSE for licensing information.
 
 
 %% uninformative priors

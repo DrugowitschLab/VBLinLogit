@@ -16,6 +16,10 @@ function [mu, lambda, nu] = bayes_linear_post(X, w, V, a_tau, b_tau)
 % which is a Student's t distribution with mean mu, precision lambda, and nu
 % degrees of freedom. All of mu and lambda a vectors, one per input x. nu
 % is a scalar as it is the same for all x.
+%
+% Copyright (c) 2013, Jan Drugowitsch
+% All rights reserved.
+% See the file LICENSE for licensing information.
 
 mu = X * w;
 lambda = (a_tau / b_tau) ./ (1 + sum(X .* (X * V), 2));

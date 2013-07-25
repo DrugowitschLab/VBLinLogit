@@ -1,5 +1,9 @@
 % script demonstrating the use of bayes_linear_fit.m and
 % bayes_linear_fit_ard.m
+%
+% Copyright (c) 2013, Jan Drugowitsch
+% All rights reserved.
+% See the file LICENSE for licensing information.
 
 % dimensionality, number of data points, noise
 d = 4;
