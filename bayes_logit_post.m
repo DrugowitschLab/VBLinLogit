@@ -10,6 +10,10 @@ function out = bayes_logit_post(X, w, V, invV)
 % p(y = 1 | x, w1) = 1 / (1 + exp(- w1' * x)),
 %
 % and w, V, invV, logdetV are the posterior parameters N(w1 | w, V).
+%
+% Copyright (c) 2013, Jan Drugowitsch
+% All rights reserved.
+% See the file LICENSE for licensing information.
 
 max_iter = 100;
 [N, Dx] = size(X);

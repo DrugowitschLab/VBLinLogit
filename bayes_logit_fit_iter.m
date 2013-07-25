@@ -25,6 +25,10 @@ function [w, V, invV, logdetV] = bayes_logit_fit_iter(X, y)
 % iterates over the inputs separately rather than processing them all at
 % once, and is therefore slower, but also computationally more stable as
 % it avoids computing the inverse of possibly close-to-singluar matrices.
+%
+% Copyright (c) 2013, Jan Drugowitsch
+% All rights reserved.
+% See the file LICENSE for licensing information.
 
 % equations from Bishop (2006) PRML Book + errata (!)
 

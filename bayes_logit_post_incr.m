@@ -11,6 +11,10 @@ function out = bayes_logit_post_incr(X, w, V, invV)
 %
 % and w, V, invV, logdetV are the posterior parameters N(w1 | w, V). In
 % constrast to bayes_logit_post, this function interates over the rows of X.
+%
+% Copyright (c) 2013, Jan Drugowitsch
+% All rights reserved.
+% See the file LICENSE for licensing information.
 
 max_iter = 100;
 N = size(X, 1);

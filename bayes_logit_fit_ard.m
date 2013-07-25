@@ -23,6 +23,10 @@ function [w, V, invV, logdetV, E_a, L] = bayes_logit_fit_ard(X, y)
 % additionally the inverse of V and ln|V| (just in case). The returned vector
 % E_a is the expectations of the posterior a_i's. L is the final variational
 % bound, which is a lower bound on the log-model evidence.
+%
+% Copyright (c) 2013, Jan Drugowitsch
+% All rights reserved.
+% See the file LICENSE for licensing information.
 
 %% hyperprior parameters
 a0 = 1e-2;
