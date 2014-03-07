@@ -33,13 +33,13 @@ y_ML_cv = X_cv * w_ML_ext;
 
 % weights and predictions by variational bayes (only on extended space)
 [w_vb V_vb invV_vb logdetV_vb an_vb bn_vb] = bayes_linear_fit(X_ext, y);
-[y_vb lam_vb nu_vb] = bayes_linear_post(X_pred_ext, w_vb, V_vb, an_vb, bn_vb);
+[y_vb lam_vb nu_vb] = bayes_linear_pred(X_pred_ext, w_vb, V_vb, an_vb, bn_vb);
 % standard deviation of Student's t with parameters lam_vb and nu_vb
 y_vb_sd = sqrt(nu_vb ./ (lam_vb .* (nu_vb - 2)));
 
 % the same with ARD
 [w_vb_ard V_vb invV_vb logdetV_vb an_vb bn_vb] = bayes_linear_fit_ard(X_ext, y);
-[y_vb_ard lam_vb nu_vb] = bayes_linear_post(X_pred_ext, w_vb_ard, V_vb, an_vb, bn_vb);
+[y_vb_ard lam_vb nu_vb] = bayes_linear_pred(X_pred_ext, w_vb_ard, V_vb, an_vb, bn_vb);
 y_vb_ard_sd = sqrt(nu_vb ./ (lam_vb .* (nu_vb - 2)));
 
 % plot fits
