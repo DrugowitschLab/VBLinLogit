@@ -1,5 +1,5 @@
-function [mu, lambda, nu] = bayes_linear_pred(X, w, V, an, bn)
-%% [mu, lambda, nu] = bayes_linear_pred(X, w, V, an, bn)
+function [mu, lambda, nu] = vb_linear_pred(X, w, V, an, bn)
+%% [mu, lambda, nu] = vb_linear_pred(X, w, V, an, bn)
 %
 % returns the posterior for bayes_linear_fit(_ard), given the inputs x being
 % the rows of X.
@@ -17,7 +17,7 @@ function [mu, lambda, nu] = bayes_linear_pred(X, w, V, an, bn)
 % degrees of freedom. All of mu and lambda a vectors, one per input x. nu
 % is a scalar as it is the same for all x.
 %
-% Copyright (c) 2013, Jan Drugowitsch
+% Copyright (c) 2013, 2014, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
 

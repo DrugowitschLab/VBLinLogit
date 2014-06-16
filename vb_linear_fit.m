@@ -1,6 +1,5 @@
-function [w, V, invV, logdetV, an, bn, E_a, L] = ...
-    bayes_linear_fit(X, y)
-%% [w, V, invV, logdetV, an, bn, E_a, L] = bayes_linear_fit(X, y)
+function [w, V, invV, logdetV, an, bn, E_a, L] = vb_linear_fit(X, y, a0, b0, c0, d0)
+%% [w, V, invV, logdetV, an, bn, E_a, L] = vb_linear_fit(X, y)
 %
 % estimates w sucht that y = Xw, using Bayesian regularisation.
 %
@@ -18,8 +17,10 @@ function [w, V, invV, logdetV, an, bn, E_a, L] = ...
 % p(alpha) = p(alpha | c0, d0).
 %
 %
-% The prior parameters a0, b0, c0, d0 are set such that the prior is
-% non-informative.
+% The prior parameters a0, b0, c0, and d0 can be set by calling the script
+% with the additional parameters vb_linear_fit(X, y, a0, b0, c0, d0). If
+% not given, they default to values a0 = 1e-2, b0 = 1e-4, c0 = 1e-2, and
+% d0 = 1e-4, such that the prior is uninformative.
 %
 % The returned posterior parameters (computed by variational Bayesian
 % inference) determine a posterior of the form
@@ -30,20 +31,21 @@ function [w, V, invV, logdetV, an, bn, E_a, L] = ...
 % and its log determinant. L is the variational bound of the model, and is a
 % lower bound on the log-model evidence ln p(y | X).
 %
-% Copyright (c) 2013, Jan Drugowitsch
+% Copyright (c) 2013, 2014, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
 
 
-%% uninformative priors
-a0 = 1e-2;
-b0 = 1e-4;
-c0 = 1e-2;
-d0 = 1e-4;
+
+%% prior parameters
+if nargin < 3,  a0 = 1e-2;  end
+if nargin < 4,  b0 = 1e-4;  end
+if nargin < 5,  c0 = 1e-2;  end
+if nargin < 6,  d0 = 1e-4;  end
 
 
 %% pre-process data
-[N D] = size(X);
+[N, D] = size(X);
 X_corr = X' * X;
 Xy_corr = X' * y;
 an = a0 + N / 2;    gammaln_an = gammaln(an);
@@ -52,7 +54,7 @@ cn = c0 + D / 2;    gammaln_cn = gammaln(cn);
 
 %% iterate to find hyperparameters
 L_last = -realmax;
-max_iter = 100;
+max_iter = 500;
 E_a = c0 / d0;
 for iter = 1:max_iter
     % covariance and weight of linear model
