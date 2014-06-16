@@ -16,5 +16,6 @@ The code is licensed under the New BSD License.
 Documentation
 -------------
 
-Find more information on the [homepage of Jan Drugowitsch](http://www.lnc.ens.fr/~jdrugowi/code_vb.html)
+Find more information about derivation and use in *Variational Bayesian
+inference for linear and logistic regression*, [arxiv:1310.5438](http://arxiv.org/abs/1310.5438) [stat.ML]
 
