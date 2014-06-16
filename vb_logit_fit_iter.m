@@ -1,5 +1,5 @@
-function [w, V, invV, logdetV] = bayes_logit_fit_iter(X, y)
-%% [w, V, invV, logdetV] = bayes_logit_fit_iter(X, y)
+function [w, V, invV, logdetV] = vb_logit_fit_iter(X, y)
+%% [w, V, invV, logdetV] = vb_logit_fit_iter(X, y)
 %
 % returns parameters of fitted logit model
 %
@@ -26,15 +26,12 @@ function [w, V, invV, logdetV] = bayes_logit_fit_iter(X, y)
 % once, and is therefore slower, but also computationally more stable as
 % it avoids computing the inverse of possibly close-to-singluar matrices.
 %
-% Copyright (c) 2013, Jan Drugowitsch
+% Copyright (c) 2013, 2014, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
 
-% equations from Bishop (2006) PRML Book + errata (!)
-
 [N, D] = size(X);
-
-max_iter = 100;
+max_iter = 500;
 
 %% (more or less) uninformative prior
 V = eye(D) / D;

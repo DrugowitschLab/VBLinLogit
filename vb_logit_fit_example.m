@@ -24,28 +24,30 @@ y1 = (y == 1);
 y_cv = 2 * (rand(N_cv, 1) < 1 ./ (1 + exp(- X_cv(:, 1:d) * w))) - 1;
 
 % Fisher Linear Discriminant
-w_LD = (cov(X(~y1, :)) + cov(X(y1, :))) \ ...
-       (mean(X(y1, :))' - mean(X(~y1, :))');
-w_LD(1) = 0.5 * (mean(X(y1, 2:end)) + mean(X(~y1, 2:end))) * w_LD(2:end);
-w_LD_ext = (cov(X_ext(~y1, :)) + cov(X_ext(y1, :))) \ ...
-           (mean(X_ext(y1, :))' - mean(X_ext(~y1, :))');
-w_LD_ext(1) = 0.5 * (mean(X_ext(y1, 2:end)) + mean(X_ext(~y1, 2:end))) * w_LD_ext(2:end);
+w_LD = NaN(d, 1);
+w_LD(2:end) = (cov(X(~y1, 2:end)) + cov(X(y1, 2:end))) \ ...
+              (mean(X(y1, 2:end))' - mean(X(~y1, 2:end))');
+w_LD(1) = - 0.5 * (mean(X(y1, 2:end)) + mean(X(~y1, 2:end))) * w_LD(2:end);
+w_LD_ext = NaN(d + d_extra, 1);
+w_LD_ext(2:end) = (cov(X_ext(~y1, 2:end)) + cov(X_ext(y1, 2:end))) \ ...
+                  (mean(X_ext(y1, 2:end))' - mean(X_ext(~y1, 2:end))');
+w_LD_ext(1) = - 0.5 * (mean(X_ext(y1, 2:end)) + mean(X_ext(~y1, 2:end))) * w_LD_ext(2:end);
 y_LD = 2 * (X_ext * w_LD_ext > 0) - 1;
 y_LD_cv = 2 * (X_cv * w_LD_ext > 0) - 1;
 
 
 % weights and predictions by variational Bayes
-[w_vb, V_vb, invV_vb, logdetV_vb, E_a_vb, L_vb] = bayes_logit_fit(X_ext, y);
-p_y_vb = bayes_logit_post(X_ext, w_vb, V_vb, invV_vb);
+[w_vb, V_vb, invV_vb, logdetV_vb, E_a_vb, L_vb] = vb_logit_fit(X_ext, y);
+p_y_vb = vb_logit_pred(X_ext, w_vb, V_vb, invV_vb);
 y_vb = 2 * (p_y_vb > 0.5) - 1;
-p_y_vb_cv = bayes_logit_post(X_cv, w_vb, V_vb, invV_vb);
+p_y_vb_cv = vb_logit_pred(X_cv, w_vb, V_vb, invV_vb);
 y_vb_cv = 2 * (p_y_vb_cv > 0.5) - 1;
 
 % same with ARD
-[w_vb_ard, V_vb, invV_vb, logdetV_vb, E_a_vb, L_vb] = bayes_logit_fit_ard(X_ext, y);
-p_y_vb_ard = bayes_logit_post(X_ext, w_vb_ard, V_vb, invV_vb);
+[w_vb_ard, V_vb, invV_vb, logdetV_vb, E_a_vb, L_vb] = vb_logit_fit_ard(X_ext, y);
+p_y_vb_ard = vb_logit_pred(X_ext, w_vb_ard, V_vb, invV_vb);
 y_vb_ard = 2 * (p_y_vb_ard > 0.5) - 1;
-p_y_vb_ard_cv = bayes_logit_post(X_cv, w_vb_ard, V_vb, invV_vb);
+p_y_vb_ard_cv = vb_logit_pred(X_cv, w_vb_ard, V_vb, invV_vb);
 y_vb_ard_cv = 2 * (p_y_vb_ard_cv > 0.5) - 1;
 
 % plot data and discriminating hyperplane

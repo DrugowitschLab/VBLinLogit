@@ -1,5 +1,5 @@
-function out = bayes_logit_post(X, w, V, invV)
-%% out = bayes_logit_post(X, w, V, invV)
+function out = vb_logit_post(X, w, V, invV)
+%% out = vb_logit_post(X, w, V, invV)
 %
 % returns a vector containing
 %
@@ -11,11 +11,11 @@ function out = bayes_logit_post(X, w, V, invV)
 %
 % and w, V, invV, logdetV are the posterior parameters N(w1 | w, V).
 %
-% Copyright (c) 2013, Jan Drugowitsch
+% Copyright (c) 2013, 2014, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
 
-max_iter = 100;
+max_iter = 500;
 [N, Dx] = size(X);
 
 %% precompute some constants

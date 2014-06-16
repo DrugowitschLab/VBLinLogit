@@ -1,5 +1,5 @@
-function [w, V, invV, logdetV, E_a, L] = bayes_logit_fit_ard(X, y)
-%% [w, V, invV, logdetV, E_a, L] = bayes_logit_fit_ard(X, y)
+function [w, V, invV, logdetV, E_a, L] = vb_logit_fit_ard(X, y)
+%% [w, V, invV, logdetV, E_a, L] = vb_logit_fit_ard(X, y)
 %
 % returns parpameters of a fitted logit model
 %
@@ -13,7 +13,9 @@ function [w, V, invV, logdetV, E_a, L] = bayes_logit_fit_ard(X, y)
 %
 % p(a_i) = Gam(a_i | a0, b0).
 %
-% The parameters a0 and b0 are set such that the prior is uninformative.
+% The prior parameters a0, b0 can be set by calling the script with the
+% additional parameters vb_linear_fit(X, y, a0, b0). If not given, they default
+% to values a0 = 1e-2, b0 = 1e-4, such that the prior is uninformative.
 %
 % The arguments are:
 % X - input matrix, inputs x as row vectors
@@ -24,29 +26,26 @@ function [w, V, invV, logdetV, E_a, L] = bayes_logit_fit_ard(X, y)
 % E_a is the expectations of the posterior a_i's. L is the final variational
 % bound, which is a lower bound on the log-model evidence.
 %
-% Copyright (c) 2013, Jan Drugowitsch
+% Copyright (c) 2013, 2014, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
 
-%% hyperprior parameters
-a0 = 1e-2;
-b0 = 1e-4;
 
-% equations from Bishop (2006) PRML Book + errata (!) + new stuff
+%% hyperprior parameters
+if nargin < 3,  a0 = 1e-2;  end
+if nargin < 4,  b0 = 1e-4;  end
 
 
 %% pre-compute some constants
 [N, D] = size(X);
-max_iter = 100;
+max_iter = 500;
 an = a0 + 0.5;    D_gammaln_an_an = D * (gammaln(an) + an);
-% t_W = 0.5 * sum(X .* repmat(y, 1, D), 1)'
 t_w = 0.5 * sum(bsxfun(@times, X, y), 1)';
 
 
 %% start first iteration kind of here, with xi = 0 -> lam_xi = 1/8
 lam_xi = ones(N, 1) / 8;
 E_a = ones(D, 1) * a0 / b0;
-% invV = diag(E_a) + 2 * X' * (X .* repmat(lam_xi, 1, D))
 invV = diag(E_a) + 2 * X' * bsxfun(@times, X, lam_xi);
 V = inv(invV);
 w = V * t_w;
@@ -67,7 +66,6 @@ for i = 1:max_iter
     E_a = an ./ bn;
 
     % recompute posterior parameters of w
-    % invV = diag(E_a) + 2 * X' * (X .* repmat(lam_xi, 1, D))
     invV = diag(E_a) + 2 * X' * bsxfun(@times, X, lam_xi);
     V = inv(invV);
     logdetV = - logdet(invV);
