@@ -23,6 +23,15 @@ Logistic regression is available in the following two variants:
 
 The code is licensed under the New BSD License.
 
+Installation
+------------
+
+Download [v0.2](https://github.com/DrugowitschLab/VBLinLogit/archive/v0.2.zip) or [the latest version](https://github.com/DrugowitschLab/VBLinLogit/archive/master.zip) of VBLinLogit and extract the downloaded file to a folder of your choice, or clone the repository. To use within MATLAB, add the folder to the search path, either using the MATLAB GUI or by calling
+```Matlab
+>> addpath('/path/to/VBLinLogit')
+```
+at the MATLAB command line. See the MATLAB documentation for how to save this search path for use in future MATLAB sessions.
+
 Documentation
 -------------
 
