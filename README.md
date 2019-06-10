@@ -28,7 +28,7 @@ Installation
 
 Download [v0.2](https://github.com/DrugowitschLab/VBLinLogit/archive/v0.2.zip) or [the latest version](https://github.com/DrugowitschLab/VBLinLogit/archive/master.zip) of VBLinLogit and extract the downloaded file to a folder of your choice, or clone the repository. To use within MATLAB/Octave, add the folder to the search path, either using the GUI in MATLAB or by calling
 ```Matlab
->> addpath('/path/to/VBLinLogit')
+>> addpath('/path/to/VBLinLogit/src')
 ```
 at the MATLAB/Octave command line. See the MATLAB/Octave documentation for how to save this search path for use in future MATLAB/Octave sessions.
 
@@ -39,8 +39,12 @@ All scripts have been tested in MATLAB R2018a and Octave v5.1.0, but should work
 
 Some linear regression example scripts rely on the MATLAB Statistics and Machine Learning Toolbox to estimate the regression coefficient confidence intervals. These function won't plot confidence intervals if this toolbox isn't installed.
 
-Documentation
--------------
+Use and documentation
+---------------------
+
+The library source code resides in the [`src`](src) folder. The header of each script in that folder provides a description of the function it performs.
+
+See the [`examples`](examples) folder for example use of the different scripts in the `src` folder.
 
 Find more information about derivation and use in *Variational Bayesian
 inference for linear and logistic regression*, [arxiv:1310.5438](http://arxiv.org/abs/1310.5438) [stat.ML]
