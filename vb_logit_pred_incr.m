@@ -1,5 +1,5 @@
-function out = vb_logit_post_incr(X, w, V, invV)
-%% out = vb_logit_post_incr(X, w, V, invV)
+function out = vb_logit_pred_incr(X, w, V, invV)
+%% out = vb_logit_pred_incr(X, w, V, invV)
 %
 % returns a vector containing
 %

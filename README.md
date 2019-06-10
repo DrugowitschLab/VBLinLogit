@@ -1,7 +1,7 @@
 VBLinLogit
 ==========
 
-This library provides stand-alone MATLAB code to perform variational Bayesian linear and logistic regression. In contrast to standard linear and logistic regression, the library assumes priors over the parameters whose parameters are tuned by variational Bayesian inference, to avoid overfitting. Specifically, it supports a fully Bayesian version of automatic relevance determination (ARD), which is a sparsity-promoting prior that prunes regression coefficients that are deemed irrelevant. 
+This library provides stand-alone MATLAB/Octave code to perform variational Bayesian linear and logistic regression. In contrast to standard linear and logistic regression, the library assumes priors over the parameters whose parameters are tuned by variational Bayesian inference, to avoid overfitting. Specifically, it supports a fully Bayesian version of automatic relevance determination (ARD), which is a sparsity-promoting prior that prunes regression coefficients that are deemed irrelevant. 
 
 Linear regression is available in the following two variants:
 
@@ -26,11 +26,18 @@ The code is licensed under the New BSD License.
 Installation
 ------------
 
-Download [v0.2](https://github.com/DrugowitschLab/VBLinLogit/archive/v0.2.zip) or [the latest version](https://github.com/DrugowitschLab/VBLinLogit/archive/master.zip) of VBLinLogit and extract the downloaded file to a folder of your choice, or clone the repository. To use within MATLAB, add the folder to the search path, either using the MATLAB GUI or by calling
+Download [v0.2](https://github.com/DrugowitschLab/VBLinLogit/archive/v0.2.zip) or [the latest version](https://github.com/DrugowitschLab/VBLinLogit/archive/master.zip) of VBLinLogit and extract the downloaded file to a folder of your choice, or clone the repository. To use within MATLAB/Octave, add the folder to the search path, either using the GUI in MATLAB or by calling
 ```Matlab
 >> addpath('/path/to/VBLinLogit')
 ```
-at the MATLAB command line. See the MATLAB documentation for how to save this search path for use in future MATLAB sessions.
+at the MATLAB/Octave command line. See the MATLAB/Octave documentation for how to save this search path for use in future MATLAB/Octave sessions.
+
+Requirements
+------------
+
+All scripts have been tested in MATLAB R2018a and Octave v5.1.0, but should work with earlier MATLAB/Octave versions. In particular, they should be compatible with MATLAB starting R2007a. Please file an issue if you identify incompatibility with earlier MATLAB/Octave versions.
+
+Some linear regression example scripts rely on the MATLAB Statistics and Machine Learning Toolbox to estimate the regression coefficient confidence intervals. These function won't plot confidence intervals if this toolbox isn't installed.
 
 Documentation
 -------------

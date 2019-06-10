@@ -5,8 +5,9 @@
 % See the file LICENSE for licensing information.
 
 
-%% set RNG seed and plot limits to re-produce JSS figures
-rng(0);
+%% set RNG seed and plot limits to re-produce arXiv figures (in MATLAB)
+isOctave = exist('OCTAVE_VERSION', 'builtin') ~= 0;
+if isOctave, rand("state", 0); else, rng(0); end
 wlims = [-5 5];
 ylims = [-15 15];
 
@@ -34,7 +35,11 @@ y_VB = vb_linear_pred(X, w_VB, V_VB, an_VB, bn_VB);
 y_VB2 = vb_linear_pred(X, w_VB2, V_VB2, an_VB2, bn_VB2);
 [y_test_VB2, lam_VB2, nu_VB2] = vb_linear_pred(X_test, w_VB2, V_VB2, an_VB2, bn_VB2);
 % maximum likelihood
-[w_ML, wint_ML] = regress(y, X);
+if exist('regress','file') == 2
+    [w_ML, wint_ML] = regress(y, X);
+else
+    w_ML = X \ y;
+end
 y_ML = X * w_ML;
 y_test_ML = X_test * w_ML;
 % train and test set error
@@ -54,8 +59,10 @@ for i = 1:D
          'LineWidth', 0.25, 'Color', [0.8 0.5 0.5]);
     plot(w(i) * [1 1] + 0.02, w_VB2(i) + sqrt(V_VB2(i,i)) * 1.96 * [-1 1], '-', ...
          'LineWidth', 0.25, 'Color', [0.5 0.8 0.5]);
-    plot(w(i) * [1 1], wint_ML(i,:), '-', ...
-         'LineWidth', 0.25, 'Color', [0.5 0.5 0.8]);
+    if exist('wint_ML','var')
+        plot(w(i) * [1 1], wint_ML(i,:), '-', ...
+             'LineWidth', 0.25, 'Color', [0.5 0.5 0.8]);
+    end
 end
 % means
 plot(w - 0.02, w_VB, 'o', 'MarkerSize', 3, ...

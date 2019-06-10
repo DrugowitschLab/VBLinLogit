@@ -5,8 +5,9 @@
 % See the file LICENSE for licensing information.
 
 
-%% set RNG seed to re-produce JSS figures
-rng(41);
+%% set RNG seed to re-produce arXiv figures
+isOctave = exist('OCTAVE_VERSION', 'builtin') ~= 0;
+if isOctave, rand("state", 41); else, rng(41); end
 
 
 %% settings

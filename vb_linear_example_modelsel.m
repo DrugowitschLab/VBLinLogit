@@ -5,8 +5,9 @@
 % See the file LICENSE for licensing information.
 
 
-%% set RNG seed to re-produce JSS figures
-rng(1);
+%% set RNG seed to re-produce arXiv figures (in MATLAB)
+isOctave = exist('OCTAVE_VERSION', 'builtin') ~= 0;
+if isOctave, rand("state", 1); else, rng(1); end
 
 
 %% settings
@@ -41,7 +42,7 @@ D_best = Ds(i);
     vb_linear_pred(gen_X(x_test, D_best), w_VB, V_VB, an_VB, bn_VB);
 y_VB_sd = sqrt(nu_VB ./ (lam_VB .* (nu_VB - 2)));
 % maximum likelihood
-w_ML = regress(y, gen_X(x, D_ML));
+w_ML = gen_X(x, D_ML) \ y;
 y_ML = gen_X(x_test, D_ML) * w_ML;
 % prediction error
 fprintf('Test set MSE, ML = %f, VB = %f\n', ...

@@ -5,8 +5,9 @@
 % See the file LICENSE for licensing information.
 
 
-%% set RNG seed and plot limits to re-produce JSS figures
-rng(0);
+%% set RNG seed and plot limits to re-produce arXiv figures (in MATLAB)
+isOctave = exist('OCTAVE_VERSION', 'builtin') ~= 0;
+if isOctave, rand("state", 0); else, rng(0); end
 wlims = [-4 4];
 
 

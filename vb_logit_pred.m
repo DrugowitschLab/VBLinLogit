@@ -1,5 +1,5 @@
-function out = vb_logit_post(X, w, V, invV)
-%% out = vb_logit_post(X, w, V, invV)
+function out = vb_logit_pred(X, w, V, invV)
+%% out = vb_logit_pred(X, w, V, invV)
 %
 % returns a vector containing
 %
