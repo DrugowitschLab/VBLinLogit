@@ -19,7 +19,7 @@
 % that, depending on the specifics of the noise, variational Bayes might
 % not always outperform linear discriminant analysis.
 %
-% Copyright (c) 2013, Jan Drugowitsch
+% Copyright (c) 2013-2019, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
 

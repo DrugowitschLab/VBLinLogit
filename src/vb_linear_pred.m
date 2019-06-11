@@ -30,7 +30,7 @@ function [mu, lambda, nu] = vb_linear_pred(X, w, V, an, bn)
 % nu degrees of freedom. All of mu and lambda a vectors, one per input x.
 % nu is a scalar as it is the same for all x.
 %
-% Copyright (c) 2013, 2014, Jan Drugowitsch
+% Copyright (c) 2013-2019, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
 

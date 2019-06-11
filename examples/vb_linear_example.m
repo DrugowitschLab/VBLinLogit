@@ -17,7 +17,7 @@
 % the presence of uninformative dimensions. The method with ARD is expected
 % to be most robust against addition of such uninformative dimensions.
 %
-% Copyright (c) 2013, Jan Drugowitsch
+% Copyright (c) 2013-2019, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
 

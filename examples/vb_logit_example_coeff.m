@@ -5,7 +5,7 @@
 % the regression coefficients, and to generate test-set predictions. Its
 % performance is compared to linear disciminant analysis.
 %
-% Copyright (c) 2014, Jan Drugowitsch
+% Copyright (c) 2014-2019, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
 

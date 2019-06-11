@@ -37,7 +37,7 @@ inference for linear and logistic regression*, [arxiv:1310.5438](http://arxiv.or
 
 See the [`examples`](examples) folder for example use of the different scripts in the `src` folder.
 
-In all of the below, `D` is the dimensionality of the input, the output is one-dimensional, and `N` is the number of data points in the training set. For both linear and logistic regression, the training set is specified by the `N x D` matrix `X`, and the `N`-elements column vector `y`. The `n`th row in `X` specifies one `D`-elements input vector that corresponds to the output given by the `n`th element of `y`. For linear regression, these outputs are expected to be scalars. For logistic regression, they are `-1` or `1`.
+In all of the below, `D` is the dimensionality of the input, the output is one-dimensional, and `N` is the number of data points in the training set. For both linear and logistic regression, the training set is specified by the `N x D` matrix `X`, and the `N`-element column vector `y`. The `n`th row in `X` specifies one `D`-element input vector that corresponds to the output given by the `n`th element of `y`. For linear regression, these outputs are expected to be scalars. For logistic regression, they are `-1` or `1`.
 
 ### Variational Bayesian linear regression
 

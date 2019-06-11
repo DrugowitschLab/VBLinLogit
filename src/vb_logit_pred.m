@@ -22,7 +22,7 @@ function out = vb_logit_pred(X, w, V, invV)
 %
 % with w, V, invV specifying the posterior parameters N(w1 | w, V).
 %
-% Copyright (c) 2013, 2014, Jan Drugowitsch
+% Copyright (c) 2013-2019, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
 

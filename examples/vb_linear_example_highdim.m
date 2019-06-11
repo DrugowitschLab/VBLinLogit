@@ -6,7 +6,7 @@
 % maximum likelihood estimates without shrinkage. The generated dataset has
 % ~1.5 training examples per dimension of the input.
 %
-% Copyright (c) 2014, Jan Drugowitsch
+% Copyright (c) 2014-2019, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
 

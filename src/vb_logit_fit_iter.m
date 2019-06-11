@@ -30,7 +30,7 @@ function [w, V, invV, logdetV] = vb_logit_fit_iter(X, y)
 % once, and is therefore slower, but also computationally more stable as
 % it avoids computing the inverse of possibly close-to-singular matrices.
 %
-% Copyright (c) 2013, 2014, Jan Drugowitsch
+% Copyright (c) 2013-2019, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
 

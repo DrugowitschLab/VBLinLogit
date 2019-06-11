@@ -33,7 +33,7 @@ function [w, V, invV, logdetV, E_a, L] = vb_logit_fit_ard(X, y, a0, b0)
 %
 % p(w1 | X, y) = N(w1 | w, V).
 %
-% Copyright (c) 2013, 2014, Jan Drugowitsch
+% Copyright (c) 2013-2019, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
 

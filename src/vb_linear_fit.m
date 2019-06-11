@@ -37,7 +37,7 @@ function [w, V, invV, logdetV, an, bn, E_a, L] = vb_linear_fit(X, y, a0, b0, c0,
 %
 % N(w1 | w, tau^-1 V) Gam(tau | an, bn).
 %
-% Copyright (c) 2013, 2014, Jan Drugowitsch
+% Copyright (c) 2013-2019, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
 

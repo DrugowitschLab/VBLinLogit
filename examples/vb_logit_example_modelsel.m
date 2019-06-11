@@ -8,7 +8,7 @@
 % Bayesian model evidence - which trades off model complexity with the
 % model's ability to capture the data.
 %
-% Copyright (c) 2014, Jan Drugowitsch
+% Copyright (c) 2014-2019, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
 

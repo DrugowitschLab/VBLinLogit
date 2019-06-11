@@ -9,7 +9,7 @@
 % shows that the variant with ARD is better able to estimate the regression
 % coefficients, and also provides lower-error predictions on the test set. 
 %
-% Copyright (c) 2014, Jan Drugowitsch
+% Copyright (c) 2014-2019, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
 

@@ -24,7 +24,7 @@ function out = vb_logit_pred_incr(X, w, V, invV)
 % constrast to vb_logit_pred, which computes the predictions for all rows of
 % X simultaneously, this function interates over the rows of X.
 %
-% Copyright (c) 2013, 2014, Jan Drugowitsch
+% Copyright (c) 2013-2019, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
 
