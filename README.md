@@ -52,4 +52,4 @@ inference for linear and logistic regression*, [arxiv:1310.5438](http://arxiv.or
 Contributing
 ------------
 
-For contributions and bug reports, please file an issue on the library's Github page.
+For contributions and bug reports, please see the [contribution guidelines](CONTRIBUTING.md).
