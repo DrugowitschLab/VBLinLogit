@@ -1,15 +1,26 @@
 function out = vb_logit_pred(X, w, V, invV)
 %% out = vb_logit_pred(X, w, V, invV)
 %
-% returns a vector containing
+% returns a vector containing p(y=1 | x, X, Y) for x = each row in the
+% given X, for a fitted Bayesian logit model.
 %
-% p(y=1 | x, X, Y)
+% The function expects the arguments
+% - X: K x D matrix of K input samples, one per row
+% - w: D-element posterior weight mean
+% - V: D x D posterior weight covariance matrix
+% - invV: inverse of V
+% w, V and invV are the fitted model parameters returned by
+% vb_logit_fit[_*].
 %
-% for x = each row in the given X, for a bayesian logit model with
+% It returns
+% - out: K-element vector, with p(y=1 | x, X, Y) as each element.
+%
+% The function assumes model parameters corresponding to the data
+% likelihood
 %
 % p(y = 1 | x, w1) = 1 / (1 + exp(- w1' * x)),
 %
-% and w, V, invV, logdetV are the posterior parameters N(w1 | w, V).
+% with w, V, invV specifying the posterior parameters N(w1 | w, V).
 %
 % Copyright (c) 2013, 2014, Jan Drugowitsch
 % All rights reserved.

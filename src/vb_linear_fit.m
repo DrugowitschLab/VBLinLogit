@@ -3,6 +3,22 @@ function [w, V, invV, logdetV, an, bn, E_a, L] = vb_linear_fit(X, y, a0, b0, c0,
 %
 % estimates w sucht that y = Xw, using Bayesian regularisation.
 %
+% The function expects the arguments
+% - X: N x D matrix of training input samples, one per row
+% - y: N-element column vector of corresponding output samples
+% - a0, b0 (optional): scalar prior parameters of the noise precision
+% - c0, d0 (optional): scalar hyper-prior shrinkage parameters
+% If not given, the prior/hyper-prior parameters default to a0 = 1e-2,
+% b0 = 1e-4, c0 = 1e-2, and d0 = 1e-4, resulting in an uninformative prior.
+%
+% It returns
+% - w: posterior weight D-element mean vector
+% - V: posterior weight D x D covariance matrix
+% - invV, logdetV: inverse of V, and its log-determinant
+% - an, bn: scalar posterior parameter of noise precision
+% - E_a: scalar mean E(alpha) of shrinkage hyper-posterior
+% - L: variational bound, lower-bounding the log-model evidence p(y | X)
+%
 % The underlying generative model assumes
 %
 % p(y | x, w, tau) = N(y | w'x, tau^-1),
@@ -16,25 +32,14 @@ function [w, V, invV, logdetV, an, bn, E_a, L] = vb_linear_fit(X, y, a0, b0, c0,
 %
 % p(alpha) = p(alpha | c0, d0).
 %
-%
-% The prior parameters a0, b0, c0, and d0 can be set by calling the script
-% with the additional parameters vb_linear_fit(X, y, a0, b0, c0, d0). If
-% not given, they default to values a0 = 1e-2, b0 = 1e-4, c0 = 1e-2, and
-% d0 = 1e-4, such that the prior is uninformative.
-%
 % The returned posterior parameters (computed by variational Bayesian
 % inference) determine a posterior of the form
 %
 % N(w1 | w, tau^-1 V) Gam(tau | an, bn).
 %
-% Also, the mean E_a = E(alpha) is returned, together with the inverse of V,
-% and its log determinant. L is the variational bound of the model, and is a
-% lower bound on the log-model evidence ln p(y | X).
-%
 % Copyright (c) 2013, 2014, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
-
 
 
 %% prior parameters

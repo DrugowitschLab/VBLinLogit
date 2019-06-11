@@ -1,30 +1,34 @@
 function [w, V, invV, logdetV] = vb_logit_fit_iter(X, y)
 %% [w, V, invV, logdetV] = vb_logit_fit_iter(X, y)
 %
-% returns parameters of fitted logit model
+% returns parpameters of a fitted logit model
 %
-% p(y = 1 | x, w) = 1 / (1 + exp(- w' * x))
+% p(y = 1 | x, w) = 1 / (1 + exp(- w' * x)).
 %
-% with weight prior
+% The function expects the arguments
+% - X: N x D matrix of training input samples, one per row
+% - y: N-element column vector of corresponding output {-1, 1} samples
+%
+% It returns
+% - w: posterior weight D-element mean vector
+% - V: posterior weight D x D covariance matrix
+% - invV, logdetV: inverse of V, and its log-determinant
+% - L: variational bound, lower-bounding the log-model evidence p(y | X)
+%
+% The underlying generative model assumes a weight vector prior
 %
 % p(w) = N(w | 0, D^-1 I),
 %
 % where D is the size of x.
 %
-% The arguments are:
-% X - input matrix, inputs x as row vectors
-% y - output vector, containing either 1 or -1
+% The function returns the parameters of the posterior
 %
-% The function returns the posterior
+% p(w1 | X, y) = N(w1 | w, V).
 %
-% p(w1 | X, y) = N(w1 | w, V),
-%
-% and additionally the inverse of V and ln|V| (just in case).
-%
-% Compared to bayes_logit_fit, this function does not use a hyperprior,
+% Compare to vb_logit_fit[_ard], this function does not use a hyperprior,
 % iterates over the inputs separately rather than processing them all at
 % once, and is therefore slower, but also computationally more stable as
-% it avoids computing the inverse of possibly close-to-singluar matrices.
+% it avoids computing the inverse of possibly close-to-singular matrices.
 %
 % Copyright (c) 2013, 2014, Jan Drugowitsch
 % All rights reserved.

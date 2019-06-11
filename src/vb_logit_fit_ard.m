@@ -1,30 +1,37 @@
-function [w, V, invV, logdetV, E_a, L] = vb_logit_fit_ard(X, y)
+function [w, V, invV, logdetV, E_a, L] = vb_logit_fit_ard(X, y, a0, b0)
 %% [w, V, invV, logdetV, E_a, L] = vb_logit_fit_ard(X, y)
 %
 % returns parpameters of a fitted logit model
 %
 % p(y = 1 | x, w) = 1 / (1 + exp(- w' * x)),
 %
-% with weight vector prior
+% with and automatic relevance determination on w.
+%
+% The function expects the arguments
+% - X: N x D matrix of training input samples, one per row
+% - y: N-element column vector of corresponding output {-1, 1} samples
+% - a0, b0 (optional): scalar shrinkage prior parameters
+% If not given, the prior/hyper-prior parameters default to a0 = 1e-2,
+% b0 = 1e-4, resulting in an weak shrinkage prior.
+%
+% It returns
+% - w: posterior weight D-element mean vector
+% - V: posterior weight D x D covariance matrix
+% - invV, logdetV: inverse of V, and its log-determinant
+% - E_a: mean vector E(a) of shrinkage posteriors
+% - L: variational bound, lower-bounding the log-model evidence p(y | X)
+%
+% The underlying generative model assumes a weight vector prior
 %
 % p(w_i | a_i) = N(w_i | 0, a_i^-1)
 %
-% and hyperprior
+% and hyperpriors
 %
 % p(a_i) = Gam(a_i | a0, b0).
 %
-% The prior parameters a0, b0 can be set by calling the script with the
-% additional parameters vb_linear_fit(X, y, a0, b0). If not given, they default
-% to values a0 = 1e-2, b0 = 1e-4, such that the prior is uninformative.
+% The function returns the parameters of the posterior
 %
-% The arguments are:
-% X - input matrix, inputs x as row vectors
-% y - output vector, containing either 1 or -1
-%
-% The function returns the posterior p(w1 | X, y) = N(w1 | w, V), and 
-% additionally the inverse of V and ln|V| (just in case). The returned vector
-% E_a is the expectations of the posterior a_i's. L is the final variational
-% bound, which is a lower bound on the log-model evidence.
+% p(w1 | X, y) = N(w1 | w, V).
 %
 % Copyright (c) 2013, 2014, Jan Drugowitsch
 % All rights reserved.
