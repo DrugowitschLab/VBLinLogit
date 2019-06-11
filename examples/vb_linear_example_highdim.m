@@ -1,5 +1,11 @@
 %% high-dimensional linear regression example for vb_linear_*
 %
+% This script demonstrates the use of variational Bayesian linear
+% regression on a high-dimensional dataset with little training data. In
+% this case, the Bayesian shrinkage regularization should outperform
+% maximum likelihood estimates without shrinkage. The generated dataset has
+% ~1.5 training examples per dimension of the input.
+%
 % Copyright (c) 2014, Jan Drugowitsch
 % All rights reserved.
 % See the file LICENSE for licensing information.
@@ -7,15 +13,16 @@
 
 %% set RNG seed and plot limits to re-produce arXiv figures (in MATLAB)
 isOctave = exist('OCTAVE_VERSION', 'builtin') ~= 0;
-if isOctave, rand("state", 0); else, rng(0); end
+if isOctave, rand("state", 0); randn("state", 0); else, rng(0); end
 wlims = [-5 5];
 ylims = [-11 11];
 
 
 %% settings
-D = 100;
-N = 150;
-N_test = 50;
+D = 100;            % dimensionality of the input
+N = 150;            % size of the training set
+N_test = 50;        % size of the test set
+
 % create data
 w = randn(D, 1);
 X = rand(N, D) - 0.5;
@@ -25,11 +32,11 @@ y_test = X_test * w + randn(N_test, 1);
 
 
 %% preform regression and make predictions
-% variational bayes linear regression
+% variational bayes linear regression, performance on train & test set
 [w_VB, V_VB, ~, ~, an_VB, bn_VB] = vb_linear_fit(X, y);
 y_VB = vb_linear_pred(X, w_VB, V_VB, an_VB, bn_VB);
 [y_test_VB, lam_VB, nu_VB] = vb_linear_pred(X_test, w_VB, V_VB, an_VB, bn_VB);
-% maximum likelihood
+% maximum likelihood, performance on train & test set
 if exist('regress','file') == 2
     [w_ML, wint_ML] = regress(y, X);
 else
@@ -37,7 +44,7 @@ else
 end
 y_ML = X * w_ML;
 y_test_ML = X_test * w_ML;
-% train and test set error
+% output train and test set error
 fprintf('Training set MSE: ML = %f, VB = %f\n', ...
         mean((y - y_ML).^2), mean((y - y_VB).^2));
 fprintf('Test     set MSE: ML = %f, VB = %f\n', ...
@@ -57,12 +64,13 @@ for i = 1:D
     end
 end
 % means
-plot(w - 0.01, w_VB, 'o', 'MarkerSize', 3, ...
+h1 = plot(w - 0.01, w_VB, 'o', 'MarkerSize', 3, ...
      'MarkerFaceColor', [0.8 0 0], 'MarkerEdgeColor', 'none');
-plot(w + 0.01, w_ML, '+', 'MarkerSize', 3, ...
+h2 = plot(w + 0.01, w_ML, '+', 'MarkerSize', 3, ...
      'MarkerFaceColor', 'none', 'MarkerEdgeColor', [0 0 0.8], 'LineWidth', 1);
 xymin = min([min(xlim) min(ylim)]);  xymax = max([max(xlim) max(ylim)]);
 plot([xymin xymax], [xymin xymax], 'k--', 'LineWidth', 0.5);
+legend([h1 h2], {'VB', 'ML'});
 set(gca, 'Box','off', 'PlotBoxAspectRatio', [1 1 1],...
     'TickDir', 'out', 'TickLength', [1 1]*0.02);
 xlabel('w');  ylabel('w_{ML}, w_{VB}');
@@ -76,12 +84,13 @@ for i = 1:N_test
     plot(y_test(i) * [1 1], y_test_VB(i) + y_VB_sd(i) * 1.96 * [-1 1], '-', ...
          'LineWidth', 0.25, 'Color', [0.8 0.5 0.5]);
 end
-plot(y_test, y_test_VB, 'o', 'MarkerSize', 3, ...
+h1 = plot(y_test, y_test_VB, 'o', 'MarkerSize', 3, ...
      'MarkerFaceColor', [0.8 0 0], 'MarkerEdgeColor', 'none');
-plot(y_test, y_test_ML, '+', 'MarkerSize', 3, ...
+h2 = plot(y_test, y_test_ML, '+', 'MarkerSize', 3, ...
      'MarkerFaceColor', 'none', 'MarkerEdgeColor', [0 0 0.8], 'LineWidth', 1);
 xymin = min([min(xlim) min(ylim)]);  xymax = max([max(xlim) max(ylim)]);
 plot([xymin xymax], [xymin xymax], 'k--', 'LineWidth', 0.5);
+legend([h1 h2], {'VB', 'ML'});
 set(gca, 'Box','off', 'PlotBoxAspectRatio', [1 1 1],...
     'TickDir', 'out', 'TickLength', [1 1]*0.02);
 xlabel('y');  ylabel('y_{ML}, y_{VB}');
