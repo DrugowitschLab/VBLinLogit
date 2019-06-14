@@ -24,6 +24,8 @@ Download [v0.2](https://github.com/DrugowitschLab/VBLinLogit/archive/v0.2.zip) o
 ```
 at the MATLAB/Octave command line. See the MATLAB/Octave documentation for how to save this search path for use in future MATLAB/Octave sessions.
 
+The installation can be checked by running the tests in the [`test`](test) folder.
+
 ## Requirements
 
 All scripts have been tested in MATLAB R2018a and Octave v5.1.0, but should work with earlier MATLAB/Octave versions. In particular, they should be compatible with MATLAB starting R2007a. Please file an issue if you identify incompatibility with earlier MATLAB/Octave versions.
