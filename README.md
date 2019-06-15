@@ -1,6 +1,6 @@
 # VBLinLogit
 
-This library provides stand-alone MATLAB/Octave code to perform variational Bayesian linear and logistic regression. In contrast to standard linear and logistic regression, the library assumes priors over the parameters whose parameters are tuned by variational Bayesian inference, to avoid overfitting. Specifically, it supports a fully Bayesian version of automatic relevance determination (ARD), which is a sparsity-promoting prior that prunes regression coefficients that are deemed irrelevant. 
+This library provides stand-alone MATLAB/Octave code to perform variational Bayesian linear and logistic regression. In contrast to standard linear and logistic regression, the library assumes priors over the parameters which are tuned by variational Bayesian inference, to avoid overfitting. Specifically, it supports a fully Bayesian version of automatic relevance determination (ARD), which is a sparsity-promoting prior that prunes regression coefficients that are deemed irrelevant.
 
 Linear regression is available in the following two variants:
 
@@ -87,7 +87,7 @@ is similar to `vb_logit_fit(.)`, but uses an ARD prior. Thus, it returns the pos
 
 #### Model predictions
 
-Please note that all prediction functions return the probabilities `p(y=1 | x, ...)` rather than the most likely `y`'s for the given inputs. How to turn these probabilities into predicted `y` depends on the loss function. For a standard `0-1` loss, the rational choice would be to predict `y=1` if `p(y=1 | x, ...) > 0.5`, and `y=-1` otherwise.
+Please note that the two logistic regression prediction functions return the probabilities `p(y=1 | x, ...)` rather than the most likely `y`'s for the given inputs. How to turn these probabilities into predicted `y` depends on the loss function. For a standard `0-1` loss, the rational choice would be to predict `y=1` if `p(y=1 | x, ...) > 0.5`, and `y=-1` otherwise.
 
 ```Matlab
 out = vb_logit_pred(X, w, V, invV)
