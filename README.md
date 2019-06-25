@@ -1,6 +1,7 @@
 # VBLinLogit
 
 [![status](http://joss.theoj.org/papers/bb46a75b7cd9df52feb9e630ef367ff2/status.svg)](http://joss.theoj.org/papers/bb46a75b7cd9df52feb9e630ef367ff2)
+[![DOI](https://zenodo.org/badge/11030889.svg)](https://zenodo.org/badge/latestdoi/11030889)
 
 This library provides stand-alone MATLAB/Octave code to perform variational Bayesian linear and logistic regression. In contrast to standard linear and logistic regression, the library assumes priors over the parameters which are tuned by variational Bayesian inference, to avoid overfitting. Specifically, it supports a fully Bayesian version of automatic relevance determination (ARD), which is a sparsity-promoting prior that prunes regression coefficients that are deemed irrelevant.
 
