@@ -1,5 +1,7 @@
 # VBLinLogit
 
+[![status](http://joss.theoj.org/papers/bb46a75b7cd9df52feb9e630ef367ff2/status.svg)](http://joss.theoj.org/papers/bb46a75b7cd9df52feb9e630ef367ff2)
+
 This library provides stand-alone MATLAB/Octave code to perform variational Bayesian linear and logistic regression. In contrast to standard linear and logistic regression, the library assumes priors over the parameters which are tuned by variational Bayesian inference, to avoid overfitting. Specifically, it supports a fully Bayesian version of automatic relevance determination (ARD), which is a sparsity-promoting prior that prunes regression coefficients that are deemed irrelevant.
 
 Linear regression is available in the following two variants:
@@ -18,7 +20,7 @@ The code is licensed under the New BSD License.
 
 ## Installation
 
-Download [v0.2](https://github.com/DrugowitschLab/VBLinLogit/archive/v0.2.zip) or [the latest version](https://github.com/DrugowitschLab/VBLinLogit/archive/master.zip) of VBLinLogit and extract the downloaded file to a folder of your choice, or clone the repository. To use within MATLAB/Octave, add the folder to the search path, either using the GUI in MATLAB or by calling
+Download [v0.3](https://github.com/DrugowitschLab/VBLinLogit/archive/v0.3.zip) or [the latest version](https://github.com/DrugowitschLab/VBLinLogit/archive/master.zip) of VBLinLogit and extract the downloaded file to a folder of your choice, or clone the repository. To use within MATLAB/Octave, add the folder to the search path, either using the GUI in MATLAB or by calling
 ```Matlab
 >> addpath('/path/to/VBLinLogit/src')
 ```
